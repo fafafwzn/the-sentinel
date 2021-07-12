@@ -19,4 +19,5 @@ The meeting host could then use the information from the meeting report to do th
 
 ## Credit
 ![alt text](asset/glints_x_hackathon_logo.png "Logo Glints")
+
 This project are part of Glints X Hackathon 2021
