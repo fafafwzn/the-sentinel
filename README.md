@@ -1,5 +1,5 @@
 # The Sentinel Project
-## Part of GlintsXHackathon
+## Part of Glints X Hackathon
 ![alt text](https://glints.com/id/lowongan/wp-content/themes/glint-blog-wp/assets/logo.svg "Logo Glints")
 
 
@@ -17,3 +17,6 @@ Those pictures are then classified by a machine learning system to determine whe
 Then the output of the machine learning system (0 for not focus, or 1 for focus) for all meeting participants will be recorded and reported statistically to the meeting host right after the meeting ended.
 The meeting host could then use the information from the meeting report to do the decision-making.
 
+## Credit
+![alt text](asset/glints_x_hackathon_logo.png "Logo Glints")
+This project are part of Glints X Hackathon 2021
