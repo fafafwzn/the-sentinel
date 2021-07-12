@@ -1,5 +1,7 @@
 # The Sentinel Project
-## Part of GlintsXHackathoon
+## Part of GlintsXHackathon
+![alt text](https://glints.com/id/lowongan/wp-content/themes/glint-blog-wp/assets/logo.svg "Logo Glints")
+
 
 ## Theme
 Intimate Collaborations, Remotely
