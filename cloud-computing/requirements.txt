@@ -1,0 +1,7 @@
+keras
+tensorflow
+tensorflowjs
+numpy
+scipy
+json
+cv2
