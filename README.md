@@ -1,7 +1,4 @@
 # The Sentinel Project
-This is a project repository by The Sentinel Team for Glints X Hackathon.
-
-
 ## Part of Glints X Hackathon
 ![alt text](https://glints.com/id/lowongan/wp-content/themes/glint-blog-wp/assets/logo.svg "Logo Glints")
 
