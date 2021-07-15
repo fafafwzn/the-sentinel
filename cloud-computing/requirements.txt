@@ -1,8 +1,6 @@
 keras
 tensorflow
-tensorflowjs
+flask
+flask-restful
 numpy
-scipy
-json
-cv2
 boto3
