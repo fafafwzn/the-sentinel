@@ -1,25 +1,122 @@
+#! /usr/bin/python3
+# Important packages
+import os
+from flask import Flask
+from flask_restful import Api, Resource, reqparse, fields, marshal_with
 import tensorflow as tf
-import tensorflowjs as tfjs
-import numpy as np
-import base64
-import io
-import scipy
-import json
-import cv2
-from keras.preprocessing import image
-from google.colab import files
 import boto3
+import numpy as np
+
+# Not Important packages
+# import base64
+# import io
+# import scipy
+# import json
+# import cv2
+# from keras.preprocessing import image
+
+app = Flask(__name__)
+api = Api(app)
+
+# Access Key
+ACCESS_ID = 'AKIATK3OQ7EKGOJX2J6F'
+ACCESS_KEY = '8+4f43izL+oTweLowox5wp9Q6ZzcJu1TKg+hEMh6'
+
+# Call the model
+model = tf.keras.models.load_model('the_sentinel_model')
+
+# Build the API
+## get to upload image
+## Model get Arguments
+model_get_args = reqparse.RequestParser()
+model_get_args.add_argument("s3_uri", type=str, help="Process ID is required", required=True)
+
+# call Resource Fields
+model_get_resource_fields = {
+    's3_uri': fields.String,
+    'predict': fields.String
+    }
+
+class Model_get(Resource):
+    """
+    Build call API to
+    1. get the image
+    """
+
+    @marshal_with(model_get_resource_fields)
+    def get(self):
+        args_call = model_get_args.parse_args()
+        s3_uri = {"s3_uri":args_call['s3_uri']}
+        s3_dir = s3_uri[25:]
+        s3_local = 'content/' + s3_dir
+        s3 = boto3.client('s3', aws_access_key_id=ACCESS_ID, aws_secret_access_key= ACCESS_KEY)
+        s3.bucket.download_file('the-sentinel-bucket', s3_dir, s3_local)
+        
+        img = image.load_img(s3_local, target_size=(256, 256))
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        uploaded_image = np.vstack([x])
+
+        uploaded_image = np.vstack([x])
+        classification_proba = model.predict(uploaded_image)
+        image_class = classification_proba.argmax(axis=-1)
+
+        if image_class[0]==1:
+          predict = 'Focus'
+        else:
+          predict = 'Not Focus'
+
+        result = {
+            "s3_uri":s3_uri,
+            "predict":predict
+        }
+        
+        return result, 201
+
+## Routing
+api.add_resource(Model_get, '/model/get')
+
+# Test Main
+if __name__ == "__main__":
+    app.run(debug=True)
+
+# # Deploy Main
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+
+
+
+
+
+
+ACCESS_KEY = 'ABC'
+SECRET_KEY = 'XYZ'
+
+session = Session(aws_access_key_id=ACCESS_KEY,
+              aws_secret_access_key=SECRET_KEY)
+s3 = session.resource('s3')
+your_bucket = s3.Bucket('bucket_name')
+
+for s3_file in your_bucket.objects.all():
+    print(s3_file.key) # prints the contents of bucket
+
+s3 = boto3.client ('s3')
+
+s3.download_file('your_bucket','k.png','/Users/username/Desktop/k.png')
+
+
 
 uploaded = files.upload()
 
 def write_to_file(save_path, data):
   with open(save_path, "wb") as f:
-    f.write(base64.b64decode(data))
+    f.write(data)
 
 def get_model():
     bucket = boto3.resource('s3').Bucket('the-sentinel-bucket')
-    bucket.download_file('tfjs_model/model.json', '/tmp/model.json')
-    model = 
+    bucket.download_file('tfjs_model/saved_model.pb', '/tmp/saved_model.pb')
+    model = tf.load_model()
 
 def ocr(img):
   ocr_text = pytesseract.image_to_string(img, config = "eng")
@@ -39,16 +136,17 @@ def lambda_handler(event, context=None):
     }
 
 for fn in uploaded.keys():
+  # Dapetin Path
   path = fn
   img = image.load_img(path, target_size=(256, 256))
+  imgplot = plt.imshow(img)
   x = image.img_to_array(img)
   x = np.expand_dims(x, axis=0)
-
   uploaded_image = np.vstack([x])
+  
+  # Klasifikasi model
   classification_proba = model.predict(uploaded_image)
   image_class = classification_proba.argmax(axis=-1)
-
-  print(fn)
 
   if image_class[0]==1:
     print('Focus')
