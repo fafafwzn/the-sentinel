@@ -4,3 +4,4 @@ flask
 flask-restful
 numpy
 boto3
+pillow

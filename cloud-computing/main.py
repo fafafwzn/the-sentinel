@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 # Important packages
+import os
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, fields, marshal_with
 from keras_preprocessing import image
@@ -83,81 +84,10 @@ class Home(Resource):
 api.add_resource(Home, '/')
 api.add_resource(Model_get, '/model/get')
 
-# Test Main
-if __name__ == "__main__":
-    app.run(debug=True)
-
-# # Deploy Main
+# # Test Main
 # if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+#     app.run(debug=True)
 
-
-
-
-
-
-
-# ACCESS_KEY = 'ABC'
-# SECRET_KEY = 'XYZ'
-
-# session = Session(aws_access_key_id=ACCESS_KEY,
-#               aws_secret_access_key=SECRET_KEY)
-# s3 = session.resource('s3')
-# your_bucket = s3.Bucket('bucket_name')
-
-# for s3_file in your_bucket.objects.all():
-#     print(s3_file.key) # prints the contents of bucket
-
-# s3 = boto3.client ('s3')
-
-# s3.download_file('your_bucket','k.png','/Users/username/Desktop/k.png')
-
-
-
-# uploaded = files.upload()
-
-# def write_to_file(save_path, data):
-#   with open(save_path, "wb") as f:
-#     f.write(data)
-
-# def get_model():
-#     bucket = boto3.resource('s3').Bucket('the-sentinel-bucket')
-#     bucket.download_file('tfjs_model/saved_model.pb', '/tmp/saved_model.pb')
-#     model = tf.load_model()
-
-# def ocr(img):
-#   ocr_text = pytesseract.image_to_string(img, config = "eng")
-#   return ocr_text
-
-# def lambda_handler(event, context=None):
-    
-#     write_to_file("/tmp/photo.jpg", event["body"])
-#     im = cv2.imread("/tmp/photo.jpg")
-    
-#     ocr_text = ocr(im)
-     
-#     # Return the result data in json format
-#     return {
-#       "statusCode": 200,
-#       "body": ocr_text
-#     }
-
-# for fn in uploaded.keys():
-#   # Dapetin Path
-#   path = fn
-#   img = image.load_img(path, target_size=(256, 256))
-#   imgplot = plt.imshow(img)
-#   x = image.img_to_array(img)
-#   x = np.expand_dims(x, axis=0)
-#   uploaded_image = np.vstack([x])
-  
-#   # Klasifikasi model
-#   classification_proba = model.predict(uploaded_image)
-#   image_class = classification_proba.argmax(axis=-1)
-
-#   if image_class[0]==1:
-#     print('Focus')
-#   else:
-#     print('Not Focus')
-
-#   print(classification_proba)
+# Deploy Main
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
