@@ -24,7 +24,7 @@ ACCESS_ID = 'AKIATK3OQ7EKGOJX2J6F'
 ACCESS_KEY = '8+4f43izL+oTweLowox5wp9Q6ZzcJu1TKg+hEMh6'
 
 # Call the model
-model = tf.keras.models.load_model('content/the_sentinel_model')
+model = tf.keras.models.load_model('content/the_sentinel')
 
 # Build the API
 ## get to upload image
