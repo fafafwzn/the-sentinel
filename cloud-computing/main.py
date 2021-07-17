@@ -1,20 +1,11 @@
-#! /usr/bin/python3
 # Important packages
 import os
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, fields, marshal_with
+import numpy as np
 from keras_preprocessing import image
 import tensorflow as tf
 import boto3
-import numpy as np
-
-# Not Important packages
-# import base64
-# import io
-# import scipy
-# import json
-# import cv2
-# from keras.preprocessing import image
 
 app = Flask(__name__)
 api = Api(app)
@@ -86,7 +77,7 @@ api.add_resource(Model_get, '/model/get')
 
 # # Test Main
 # if __name__ == "__main__":
-#     app.run(debug=True)
+#     app.run()
 
 # Deploy Main
 if __name__ == "__main__":
