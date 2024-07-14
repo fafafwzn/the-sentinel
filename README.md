@@ -1,7 +1,7 @@
 # The Sentinel Project
 ## Part of Glints X Hackathon
 ![alt text](https://glints.com/id/lowongan/wp-content/themes/glint-blog-wp/assets/logo.svg "Logo Glints")
-
+Git repository to build a computer vision model to estimate focus based on one's eye gaze, using the Columbia State University's Eye Gaze Dataset
 
 ## Theme
 Intimate Collaborations, Remotely
@@ -20,4 +20,4 @@ The meeting host could then use the information from the meeting report to do th
 ## Credit
 ![alt text](asset/glints_x_hackathon_logo.png "Logo Glints")
 
-This project are part of Glints X Hackathon 2021
+This project is part of Glints X Hackathon 2021
