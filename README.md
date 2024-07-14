@@ -1,7 +1,7 @@
+Git repository to build a computer vision model to estimate focus based on one's eye gaze, using the Columbia State University's Eye Gaze Dataset
 # The Sentinel Project
 ## Part of Glints X Hackathon
 ![alt text](https://glints.com/id/lowongan/wp-content/themes/glint-blog-wp/assets/logo.svg "Logo Glints")
-Git repository to build a computer vision model to estimate focus based on one's eye gaze, using the Columbia State University's Eye Gaze Dataset
 
 ## Theme
 Intimate Collaborations, Remotely
